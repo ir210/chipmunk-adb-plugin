@@ -1,0 +1,33 @@
+<div class="container">
+    <p class="t-normal">Connected devices</p>
+    <p class="t-small color-scheme-1" *ngIf="_ng_connected.length === 0">No connected devices for this session</p>
+    <ul class="devices connected" *ngIf="_ng_connected.length > 0">
+        <li class="device" *ngFor="let connected of _ng_connected">
+            <lib-sb-device-connected-com [device]="connected.device" [options]="connected.options" [state]="connected.state" [onDisconnect]="_ng_onDisconnectDevice.bind(this, connected.device)"></lib-sb-device-connected-com>
+        </li>
+    </ul>
+</div>
+<div class="container" *ngIf="_ng_connected.length > 0">
+    <div class="comstyle-input-holder input-wrapper">
+        <div class="comstyle-input">
+            <lib-primitive-input #msgInput
+            [type]="'text'"
+            [placeholder]="'press ENTER to send'"
+            [value]="_ng_msg"
+            [onEnter]="_ng_sendMessage">
+            </lib-primitive-input>
+        </div>
+    </div>
+    <div class="dropdown">
+        <lib-primitive-dropdownlist #selectDevice
+        *ngIf="_ng_defaultDevice !== undefined"
+        [attr.id]="'selectDevice'"
+        [onChange]="_ng_changeDropdownSelect"
+        [items]="_ng_deviceList"
+        [defaults]="_ng_defaultDevice">
+        </lib-primitive-dropdownlist>
+    </div>
+</div>
+<div class="error">
+    <p class="t-normal color-scheme-error">{{_ng_error}}</p>
+</div>

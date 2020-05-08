@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="portInfo">
+        <lib-sb-deviceinfo-com [device]="device"></lib-sb-deviceinfo-com>
+    </div>
+    <div *ngIf="_ng_isConnected(device)">
+        <p class="conn size t-small color-scheme-2">connected</p>
+    </div>
+    <div class="container" *ngIf="!_ng_isConnected(device)">
+        <div>
+            <canvas #canvas  [attr.id]="'canvas_' + device.name"></canvas>
+        </div>
+        <div>
+            <p class="size t-small color-scheme-2">{{_ng_read(device)}}</p>
+        </div>
+    </div>
+</div>

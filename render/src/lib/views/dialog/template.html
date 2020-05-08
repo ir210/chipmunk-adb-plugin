@@ -1,0 +1,12 @@
+<div class="container">
+    <p class="t-normal">Available devices</p>
+    <table class="devices">
+        <tr [attr.class]="'device ' + (_ng_isDeviceSelected(device) ? 'selected' : '')" *ngFor="let device of _ng_devices" (click)="_ng_onDeviceSelect(device)" (dblclick)="_ng_onConnect(device)">
+            <td><lib-dia-device-available-com [device]="device" [connected]="_ng_connected" [spyState]="_ng_spyState" [ticker]="onTick()"></lib-dia-device-available-com></td>
+        </tr>
+    </table>
+    <div class="controlls" *ngIf="_ng_canBeConnected()">
+        <span class="small-button" (click)="_ng_onOptions()">Options</span>
+        <span class="small-button" (click)="_ng_onConnect()">Connect</span>
+    </div>
+</div>
